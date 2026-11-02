@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="三部值得留一個晚上欣賞的電影，從情緒、宇宙到奇幻世界。">
+  <title>今晚看什麼｜電影推薦清單</title>
+  <style>
+    :root { color-scheme: dark; --bg:#101b20; --card:#18282e; --text:#f6f2e9; --muted:#b8c8c9; --accent:#f2bc65; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--bg); color:var(--text); font-family:system-ui,"Microsoft JhengHei",sans-serif; line-height:1.8; }
+    .wrap { max-width:1120px; margin:auto; padding:0 24px; }
+    header { border-bottom:1px solid #ffffff24; }
+    nav { display:flex; justify-content:space-between; align-items:center; padding:22px 0; gap:16px; }
+    .brand { font-weight:800; letter-spacing:.08em; }
+    a { color:var(--accent); text-underline-offset:5px; }
+    a:focus-visible { outline:3px solid var(--accent); outline-offset:6px; }
+    .hero { padding:72px 0 48px; max-width:760px; }
+    .eyebrow { color:var(--accent); text-transform:uppercase; font-size:.8rem; letter-spacing:.2em; }
+    h1 { font-size:clamp(2.4rem,6vw,4.5rem); line-height:1.2; margin:18px 0 24px; letter-spacing:-.04em; }
+    .intro { font-size:1.1rem; color:var(--muted); max-width:590px; }
+    .section-head { display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin:12px 0 22px; }
+    .section-head h2 { font-size:1.25rem; margin:0; }
+    .count { color:var(--muted); font-size:.9rem; }
+    .grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px; padding-bottom:64px; }
+    article { background:var(--card); border:1px solid #ffffff20; border-radius:16px; overflow:hidden; }
+    .art { height:155px; padding:22px; display:flex; align-items:flex-end; justify-content:space-between; background:linear-gradient(145deg,#345849,#183c3a); }
+    article:nth-child(2) .art { background:linear-gradient(145deg,#343d61,#1e2c40); }
+    article:nth-child(3) .art { background:linear-gradient(145deg,#724536,#392e34); }
+    .number { font-size:3.9rem; font-weight:200; line-height:1; opacity:.8; }
+    .art-label { font-size:.7rem; letter-spacing:.12em; }
+    .body { padding:25px; }
+    .genre { display:inline-block; border:1px solid #ffffff40; border-radius:100px; padding:2px 11px; color:var(--muted); font-size:.8rem; }
+    h3 { font-size:1.65rem; margin:14px 0; }
+    .reason { color:var(--muted); margin:0; }
+    footer { border-top:1px solid #ffffff24; color:var(--muted); padding:24px 0 34px; font-size:.85rem; }
+    @media(max-width:760px) { .grid { grid-template-columns:1fr; } .hero { padding-top:45px; } .art { height:115px; } nav { font-size:.9rem; } }
+  </style>
+</head>
+<body>
+  <header><div class="wrap"><nav aria-label="主要導覽"><span class="brand">今晚看什麼</span><a href="#movies">查看推薦 ↓</a></nav></div></header>
+  <main class="wrap">
+    <section class="hero" aria-labelledby="title"><div class="eyebrow">A little movie inspiration</div><h1 id="title">留一個晚上，<br>給一個好故事。</h1><p class="intro">不必花整晚選片。從動畫的溫柔、宇宙的遼闊，到奇幻世界的冒險，找一部適合今天心情的電影。</p></section>
+    <section id="movies" aria-labelledby="list-title">
+      <div class="section-head"><h2 id="list-title">我的電影推薦清單</h2><span class="count">{{ movies|length }} 部精選</span></div>
+      <div class="grid">
+      <!-- Jinja2 迴圈：每一筆字典資料對應一張電影卡片。 -->
+      {% for movie in movies %}
+        <article>
+          <div class="art" aria-hidden="true"><span class="number">0{{ loop.index }}</span><span class="art-label">MOVIE PICK</span></div>
+          <div class="body"><span class="genre">{{ movie.genre }}</span><h3>{{ movie.title }}</h3><p class="reason">{{ movie.reason }}</p></div>
+        </article>
+      {% endfor %}
+      </div>
+    </section>
+  </main>
+  <footer><div class="wrap">今晚看什麼 · 留下喜歡的電影，也留下推薦的理由。</div></footer>
+</body>
+</html>
